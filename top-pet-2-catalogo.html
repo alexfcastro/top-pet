@@ -673,6 +673,7 @@ nav.menu a{padding:8px 9px}
 /* Identidade Top Pet: mantém o desenho do modelo original */
 :root{--orange:#F28C28;--on-orange:#10244F;--orange-text:#94480A;--teal:#2FA3AD}
 .brand img,img.lg{background:#FFFDF9;padding:6px;border-radius:12px!important}
+.perks .wrap{padding-top:24px!important;padding-bottom:42px!important}
 </style>
 <style id="layout-login-fix">
 /* Revisão 20261005-1714: layout sem barras horizontais */
@@ -793,9 +794,9 @@ nav.menu a{white-space:normal;text-align:center}
       </div>
       <div class="svc-grid">
         <div class="svc"><div class="ic" aria-hidden="true" data-i="bath"></div><h3>Banho</h3><p>Banho para deixar seu pet limpo e cheiroso. Consulte o valor para o porte e o tipo de pelo.</p></div>
-        <div class="svc"><div class="ic" aria-hidden="true" data-i="scissors"></div><h3>Tosa</h3><p>Tosa combinada com você antes do atendimento. Diga como prefere o corte e a equipe orienta.</p></div>
-        <div class="svc"><div class="ic" aria-hidden="true" data-i="paw"></div><h3>Agendamento</h3><p>Chame no WhatsApp, informe o porte do pet e o melhor dia. A equipe confirma o horário.</p></div>
-        <div class="svc"><div class="ic" aria-hidden="true" data-i="card"></div><h3>Valores e pagamento</h3><p>Consulte os valores e as formas de pagamento diretamente com a Top Pet.</p></div>
+        <div class="svc"><div class="ic" aria-hidden="true" data-i="scissors" data-ph="tosa"></div><h3>Tosa</h3><p>Tosa combinada com você antes do atendimento. Diga como prefere o corte e a equipe orienta.</p></div>
+        <div class="svc"><div class="ic" aria-hidden="true" data-i="paw" data-ph="agenda"></div><h3>Agendamento</h3><p>Chame no WhatsApp, informe o porte do pet e o melhor dia. A equipe confirma o horário.</p></div>
+        <div class="svc"><div class="ic" aria-hidden="true" data-i="card" data-ph="valores"></div><h3>Valores e pagamento</h3><p>Consulte os valores e as formas de pagamento diretamente com a Top Pet.</p></div>
       </div>
       <div class="tblwrap" data-modes="23"><table class="tbl price-tbl"><thead><tr><th>Serviço</th><th>Pequeno</th><th>Médio</th><th>Grande</th></tr></thead><tbody id="priceTbl"></tbody></table></div>
       <p class="note" data-modes="3">Valores de exemplo, ajustáveis pela equipe no painel.</p><p class="note" data-modes="2">Valores de exemplo.</p>
@@ -860,7 +861,7 @@ nav.menu a{white-space:normal;text-align:center}
         <a class="svc cat-card" href="#loja" data-cat="acessorio" data-wamsg="Olá! Quero ver as opções de camas, roupinhas e acessórios da Top Pet."><div class="ic" aria-hidden="true" data-i="bed"></div><h3>Camas e roupinhas</h3><p>Caminhas, roupinhas de frio, coleiras e acessórios.</p><span class="cat-go"><span class="m1">Pedir pelo WhatsApp</span><span class="m23">Ver produtos</span> ›</span></a>
         <a class="svc cat-card" href="#loja" data-cat="petisco|brinquedo" data-wamsg="Olá! Quero ver as opções de petiscos e brinquedos da Top Pet."><div class="ic" aria-hidden="true" data-i="ball"></div><h3>Petiscos e brinquedos</h3><p>Bifinhos, ossinhos, bolinhas, mordedores e arranhadores.</p><span class="cat-go"><span class="m1">Pedir pelo WhatsApp</span><span class="m23">Ver produtos</span> ›</span></a>
         <a class="svc cat-card" href="#loja" data-cat="higiene" data-wamsg="Olá! Quero ver as opções de produtos de higiene da Top Pet."><div class="ic" aria-hidden="true" data-i="bottle"></div><h3>Higiene</h3><p>Shampoos, tapetes higiênicos, areia para gatos e escovas.</p><span class="cat-go"><span class="m1">Pedir pelo WhatsApp</span><span class="m23">Ver produtos</span> ›</span></a>
-        <div class="svc"><div class="ic" aria-hidden="true" data-i="card"></div><h3>Formas de pagamento</h3><p>Consulte as formas de pagamento disponíveis pelo WhatsApp.</p></div>
+        <div class="svc"><div class="ic" aria-hidden="true" data-i="card" data-ph="pagamento"></div><h3>Formas de pagamento</h3><p>Consulte as formas de pagamento disponíveis pelo WhatsApp.</p></div>
       </div>
       <a class="btn wa" data-modes="1" target="_blank" rel="noopener" data-wa="Olá! Quero consultar produtos na Top Pet.">Consultar pelo WhatsApp</a>
       <a class="btn blue" data-modes="23" href="#loja" data-cat="todas">Ver todos os produtos</a>
@@ -2062,8 +2063,8 @@ $$("#produtos [data-cat]").forEach(function(el){
     var h=el.querySelector("h3"); toast(h?"Mostrando: "+h.textContent:"Mostrando todos os produtos"); });
 });
 /* fotos nos cards de serviços e categorias */
-var PH={bath:["sv-banho","Cachorrinho branco sendo escovado e secado na mesa de banho e tosa"],steth:["sv-clinica","Veterinária examinando um cachorro com estetoscópio"],syringe:["sv-vacinas","Filhote recebendo vacina de veterinário com luvas"],car:["sv-taxi","Cachorrinho em caixa de transporte no banco de trás de um carro"],bowl:["ct-racoes","Sacos de ração para cães e gatos com uma tigela cheia"],pill:["ct-medicamentos","Caixas de medicamento veterinário, pipetas e coleira"],bed:["ct-camas","Caminha redonda com roupinha e coleira"],ball:["ct-petiscos","Bolinhas, corda, mordedor e ossinhos"],bottle:["ct-higiene","Shampoos, escova, tapete higiênico e areia para gatos"]};
-$$(".svc .ic[data-i]").forEach(function(el){ var k=PH[el.getAttribute("data-i")]; if(!k||!IMG[k[0]]) return; var im=document.createElement("img"); im.className="svc-ph"; im.src=IMG[k[0]]; im.alt=k[1]; im.loading="lazy"; el.parentNode.classList.add("has-ph"); el.parentNode.replaceChild(im,el); });
+var PH={tosa:["g15","Cachorrinho de pelo longo penteado, com laços"],agenda:["g3","Shih-tzu com laço, de pelo aparado"],valores:["g13","Cachorrinho branco com bandana xadrez"],pagamento:["g5","Cachorrinho preto e branco com laço rosa"],bath:["sv-banho","Cachorrinho branco sendo escovado e secado na mesa de banho e tosa"],steth:["sv-clinica","Veterinária examinando um cachorro com estetoscópio"],syringe:["sv-vacinas","Filhote recebendo vacina de veterinário com luvas"],car:["sv-taxi","Cachorrinho em caixa de transporte no banco de trás de um carro"],bowl:["ct-racoes","Sacos de ração para cães e gatos com uma tigela cheia"],pill:["ct-medicamentos","Caixas de medicamento veterinário, pipetas e coleira"],bed:["ct-camas","Caminha redonda com roupinha e coleira"],ball:["ct-petiscos","Bolinhas, corda, mordedor e ossinhos"],bottle:["ct-higiene","Shampoos, escova, tapete higiênico e areia para gatos"]};
+$$(".svc .ic[data-i]").forEach(function(el){ var k=PH[el.getAttribute("data-ph")||el.getAttribute("data-i")]; if(!k||!IMG[k[0]]) return; var im=document.createElement("img"); im.className="svc-ph"; im.src=IMG[k[0]]; im.alt=k[1]; im.loading="lazy"; el.parentNode.classList.add("has-ph"); el.parentNode.replaceChild(im,el); });
 $$("[data-i]").forEach(function(el){ el.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+(ICONS[el.getAttribute("data-i")]||ICONS.paw)+'</svg>'; });
 /* carrossel do topo: automático, com deslizar no celular, setas e teclado */
 (function(){
